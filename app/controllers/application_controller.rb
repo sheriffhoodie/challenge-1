@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def scrape_page
     require 'open-uri'
-    document = Nokogiri::HTML(open("https://www.twitter.com/"))
+    document = Nokogiri::HTML(open("https://www.reddit.com/"))
     @h1s = document.search('h1')
     @h2s = document.search('h2')
     @h3s = document.search('h3')
