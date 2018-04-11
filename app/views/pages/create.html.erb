@@ -1,0 +1,68 @@
+<head>
+  <link rel="stylesheet"             href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<div class="jumbotron">
+  <div class="container">
+    <h1>Welcome to Web Scraper</h1>
+  </div>
+</div>
+<div class="container">
+  <%= form_tag("/pages", method: "post") do %>
+  <%= label_tag :title %><br>
+  <%= text_field_tag :title %>
+  <br>
+  <br>
+  <%= label_tag :url %><br>
+  <%= text_field_tag :url %>
+  <p>
+    <%= submit_tag("Submit") %>
+  </p>
+<% end %>
+</div>
+<% if @url %>
+  <div class="container">
+    <h2>Here is the data from your url:</h2>
+    <div class="row">
+      <div class="col-lg-3">
+        <% if @h1s.empty? %>
+          <h4>There are no h1 elements present.</h4>
+        <% else %>
+          <h4>Here are the h1 elements:</h4>
+          <% @h1s.each do |head| %>
+            <p><%= head.text %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-lg-3">
+        <% if @h2s.empty? %>
+          <h4>There are no h2 elements present.</h4>
+        <% else %>
+          <h4>Here are the h2 elements:</h4>
+          <% @h2s.each do |head| %>
+            <p><%= head.text %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-lg-3">
+        <% if @h3s.empty? %>
+          <h4>There are no h3 elements present.</h4>
+        <% else %>
+          <h4>Here are the h3 elements:</h4>
+          <% @h3s.each do |head| %>
+            <p><%= head.text %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-lg-3">
+        <h4>Here are the links on the page you provided:</h4>
+        <% @links_arr.each do |link| %>
+          <p><%= link %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+<div class="container">
+  <h5>No url entered.</h5>
+</div>
+<% end %>
