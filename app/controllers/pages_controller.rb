@@ -7,8 +7,8 @@ class PagesController < JSONAPI::ResourceController
   def create
     title = params[:title]
     @url = params[:url]
-    @pages = []
-    @pages << Page.new(title, @url)
+    page = Page.new(page_params)
+    page.save
 
     if @url
       require 'open-uri'
@@ -22,9 +22,13 @@ class PagesController < JSONAPI::ResourceController
         link_url = link['href']
         @links_arr << link_url
       end
-      render :create
-    end
 
+    end
+    render template: 'pages/home'
+  end
+
+  def page_params
+    params.fetch(:page, Hash.new).permit(:title, :url)
   end
 
 end

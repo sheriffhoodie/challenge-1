@@ -13,9 +13,12 @@
   <br>
   <br>
   <%= label_tag :url %><br>
+  <p>Note: Urls must start with 'http://'.</p>
   <%= text_field_tag :url %>
+  <br>
+  <br>
   <p>
-    <%= submit_tag("Submit") %>
+    <%= submit_tag("Submit", :class=>'btn btn-primary') %>
   </p>
 <% end %>
 </div>

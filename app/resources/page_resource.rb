@@ -1,5 +1,4 @@
 class PageResource < JSONAPI::Resource
-  attributes :title
-  has_many :headers
-  has_many :links
+  attributes :title, :url
+
 end
