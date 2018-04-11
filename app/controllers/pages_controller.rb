@@ -7,6 +7,9 @@ class PagesController < JSONAPI::ResourceController
   def create
     title = params[:title]
     @url = params[:url]
+    # page = {title: title, url: @url}
+    # @pages = []
+    # @pages << page
     page = Page.new(page_params)
     page.save
 
