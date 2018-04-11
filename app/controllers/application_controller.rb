@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # include JSONAPI::ActsAsResourceController
+  include JSONAPI::ActsAsResourceController
   protect_from_forgery with: :exception
 
   class Page
@@ -13,14 +13,15 @@ class ApplicationController < ActionController::Base
 
   def scrape_page
     require 'open-uri'
-    document = Nokogiri::HTML(open("https://www.reddit.com/"))
-
-    pages = document.css('.entry')
-    @pages_arr = []
-    pages.each do |entry|
-      title = entry.css('p.title>a').text
-      link = entry.css('p.title>a')[0]['href']
-      @pages_arr << Page.new(title, link)
+    document = Nokogiri::HTML(open("https://www.twitter.com/"))
+    @h1s = document.search('h1')
+    @h2s = document.search('h2')
+    @h3s = document.search('h3')
+    @links = document.search('a')
+    @links_arr = []
+    @links.each do |link|
+      link_url = link['href']
+      @links_arr << link_url
     end
 
     render template: 'scrape_page'

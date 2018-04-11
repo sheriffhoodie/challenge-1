@@ -1,5 +1,18 @@
-<h1>Reddit's Front Page</h1>
-<% @pages_arr.each do |page| %>
-  <p><%= page.title %></p>
-  <p><%= page.link %></p>
+<h1>Welcome to Web Scraper</h1>
+<h2>Here is the data from your url:</h2>
+<h4>Here are the h1 elements:</h4>
+<% @h1s.each do |head| %>
+  <p><%= head.text %></p>
+<% end %>
+<h4>Here are the h2 elements:</h4>
+<% @h2s.each do |head| %>
+  <p><%= head.text %></p>
+<% end %>
+<h4>Here are the h3 elements:</h4>
+<% @h3s.each do |head| %>
+  <p><%= head.text %></p>
+<% end %>
+<h4>Here are the links on the page you provided:</h4>
+<% @links_arr.each do |link| %>
+  <p><%= link %></p>
 <% end %>
